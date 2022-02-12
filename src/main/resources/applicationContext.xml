@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    
+    <bean id="student123"
+          class="com.example.demo.fx04.spring01.Student">
+        <property name="id" value="123" />
+        <property name="name" value="KK123" />
+    </bean>
+    
+    <bean id="student100"
+          class="com.example.demo.fx04.spring01.Student">
+        <property name="id" value="100" />
+        <property name="name" value="KK100" />
+    </bean>
+    
+    <bean id="class1" class="com.example.demo.fx04.spring02.Klass">
+        <property name="students">
+            <list>
+                <ref bean="student100" />
+                <ref bean="student123" />
+<!--                <bean class="io.kimmking.spring01.Student">-->
+<!--                    <property name="name" value="qq" />-->
+<!--                    <property name="id" value="001" /> -->
+<!--                </bean>-->
+            </list>
+        </property>
+    </bean>
+    
+    
+    <context:component-scan base-package="com.example.demo.fx04.spring02" />
+    
+    
+    <bean id="aop1" class="com.example.demo.fx04.spring02.Aop1" />
+    
+    <bean id="aop2" class="com.example.demo.fx04.spring02.Aop2" />
+    
+<!--    <aop:aspectj-autoproxy proxy-target-class="true" />这个会使全局变成字节码增强-->
+    <!--aop注解的的自动代理-->
+    <aop:aspectj-autoproxy  />
+    
+    <aop:config>
+        <aop:pointcut expression="execution(* com.example.demo.fx04.aop.*.*(..))" id="p1" /> <!--切点-->
+        <aop:aspect ref="aop1"> <!--切面 -->
+            <aop:around method="around" pointcut-ref="p1" />
+            <aop:before method="startTransaction" pointcut-ref="p1" /> <!--前置通知-->
+            <aop:after-returning method="commitTransaction" pointcut-ref="p1"/> <!--后置通知-->
+        </aop:aspect>
+    </aop:config>
+
+    <context:annotation-config />
+<!--    -->
+    <bean id="school" class="com.example.demo.fx04.spring02.School"></bean>
+
+
+    <!-- 通过SET方式注入属性的值 -->
+    <!-- 通过SET方式注入属性的值 -->
+    <!-- property节点用于配置属性的值 -->
+    <!--
+        scope属性：用来指定bean的作用域。
+        缺省值是"singleton"(单例),如果值为
+        "prototype"(原型),则创建多个实例。
+     -->
+    <bean id="user1" class="com.example.demo.fx04.spring01.User" scope="singleton">
+        <property name="name" value="da"/>
+        <property name="from" value="Beijing"/>
+        <property name="age" value="26"/>
+        <!-- 注入List类型的值 -->
+        <property name="friends">
+            <list>
+                <value>Tom</value>
+                <value>Kate</value>
+                <value>Mary</value>
+                <value>David</value>
+            </list>
+        </property>
+        <!-- 注入Set类型的值 -->
+        <property name="cities">
+            <set>
+                <value>Hangzhou</value>
+                <value>Beijing</value>
+                <value>Shanghai</value>
+                <value>Guangzhou</value>
+                <value>Shenzhen</value>
+            </set>
+        </property>
+        <!-- 注入Map类型的值 -->
+        <property name="session">
+            <map>
+                <entry key="uid" value="9527"/>
+                <entry key="username" value="Jack"/>
+                <entry key="password" value="1234"/>
+            </map>
+        </property>
+        <!-- 注入数组类型的值 -->
+        <property name="numbers">
+            <array>
+                <value>7</value>
+                <value>3</value>
+                <value>9</value>
+            </array>
+        </property>
+    </bean>
+    
+</beans>
