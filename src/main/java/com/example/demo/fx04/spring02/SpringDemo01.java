@@ -1,5 +1,6 @@
 package com.example.demo.fx04.spring02;
 
+import cn.hutool.core.util.ArrayUtil;
 import com.example.demo.fx04.aop.ISchool;
 import com.example.demo.fx04.spring01.Student;
 import com.example.demo.fx04.spring01.User;
@@ -74,5 +75,11 @@ public class SpringDemo01 {
         //使用AnnotationConfigApplicationContext注册配置类
         AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(UserConfig.class);
         System.out.println(ctx.getBean("message"));
+
+        String[] map = ArrayUtil.map(new Long[]{Long.valueOf(4521), Long.valueOf(43432)}, String.class, x -> String.valueOf(x));
+        for (String s : map) {
+            System.out.println(s);
+        }
+        System.out.println("------------------------------");
     }
 }
