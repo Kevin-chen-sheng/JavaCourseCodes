@@ -208,6 +208,20 @@
         </dependency>
 
 
+        <!--shardingsphere start-->
+        <!-- for spring boot -->
+        <dependency>
+            <groupId>io.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <!-- for spring namespace -->
+        <dependency>
+            <groupId>io.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-namespace</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <!--shardingsphere end-->
 
         <!--        <dependency>-->
         <!--            <groupId>com.example</groupId>-->
