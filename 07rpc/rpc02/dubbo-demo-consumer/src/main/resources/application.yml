@@ -1,0 +1,86 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: dubbo-demo-consumer
+  main:
+    allow-bean-definition-overriding: true
+    web-application-type: none
+dubbo:
+  scan:
+    base-packages: io.kimmking.dubbo.demo.consumer
+  registry:
+    address: zookeeper://localhost:2181
+  metadata-report:
+    address: zookeeper://localhost:2181
+  protocol:
+    name: dubbo
+    port: 12346
+    registry:
+      address: zookeeper://localhost:2181
+    metadata-report:
+      address: zookeeper://localhost:2181
+    application:
+      qosEnable: true
+      qosPort: 22222
+      qosAcceptForeignIp: true
+      qos-enable-compatible: true
+      qos-host-compatible: localhost
+      qos-port-compatible: 22222
+      qos-accept-foreign-ip-compatible: true
+      qos-host: localhost
+
+#数据源配置 默认Hikari
+spring.datasource.url: jdbc:mysql://loaclhost:3306/gts02?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC
+spring.datasource.username: root
+spring.datasource.password: root
+spring.datasource.driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+hmily:
+  server:
+    configMode: local
+    appName: dubbo-demo-consumer
+  #  如果server.configMode eq local 的时候才会读取到这里的配置信息.
+  config:
+    appName: dubbo-demo-consumer
+    serializer: kryo
+    contextTransmittalMode: threadLocal
+    scheduledThreadMax: 16
+    scheduledRecoveryDelay: 60
+    scheduledCleanDelay: 60
+    scheduledPhyDeletedDelay: 600
+    scheduledInitDelay: 30
+    recoverDelayTime: 60
+    cleanDelayTime: 180
+    limit: 200
+    retryMax: 10
+    bufferSize: 8192
+    consumerThreads: 16
+    asyncRepository: true
+    autoSql: true
+    phyDeleted: true
+    storeDays: 3
+    repository: mysql
+
+repository:
+  database:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hmily?useSSL=false&autoReconnect=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+    maxActive: 20
+    minIdle: 10
+    connectionTimeout: 30000
+    idleTimeout: 600000
+    maxLifetime: 1800000
+
+metrics:
+  metricsName: prometheus
+  host:
+  port: 9071
+  async: true
+  threadCount : 16
+  jmxConfig:
