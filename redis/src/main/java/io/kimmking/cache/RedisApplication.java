@@ -16,27 +16,27 @@ public class RedisApplication {
 
 	public static void main(String[] args) {
 
-		// C1.最简单demo
-		Jedis jedis = new Jedis("localhost", 6379);
-		System.out.println(jedis.info());
-		jedis.set("uptime", new Long(System.currentTimeMillis()).toString());
-		System.out.println(jedis.get("uptime"));
-		jedis.set("teacher", "Cuijing");
-		System.out.println(jedis.get("teacher"));
+//		// C1.最简单demo
+//		Jedis jedis = new Jedis("localhost", 6379);
+//		System.out.println(jedis.info());
+//		jedis.set("uptime", new Long(System.currentTimeMillis()).toString());
+//		System.out.println(jedis.get("uptime"));
+//		jedis.set("teacher", "Cuijing");
+//		System.out.println(jedis.get("teacher"));
 //
-//		// C2.基于sentinel和连接池的demo
-//		Jedis sjedis = SentinelJedis.getJedis();
-//		System.out.println(sjedis.info());
-//		sjedis.set("uptime2", new Long(System.currentTimeMillis()).toString());
-//		System.out.println(sjedis.get("uptime2"));
-//		SentinelJedis.close();
+		// C2.基于sentinel和连接池的demo
+		Jedis sjedis = SentinelJedis.getJedis();
+		System.out.println(sjedis.info());
+		sjedis.set("uptime2", new Long(System.currentTimeMillis()).toString());
+		System.out.println(sjedis.get("uptime2"));
+		SentinelJedis.close();
 //
-//		// C3. 直接连接sentinel进行操作
-//		Jedis jedisSentinel = new Jedis("localhost", 26379); // 连接到sentinel
-//		List<Map<String, String>> masters = jedisSentinel.sentinelMasters();
-//		System.out.println(JSON.toJSONString(masters));
-//		List<Map<String, String>> slaves = jedisSentinel.sentinelSlaves("mymaster");
-//		System.out.println(JSON.toJSONString(slaves));
+		// C3. 直接连接sentinel进行操作
+		Jedis jedisSentinel = new Jedis("localhost", 26379); // 连接到sentinel
+		List<Map<String, String>> masters = jedisSentinel.sentinelMasters();
+		System.out.println(JSON.toJSONString(masters));
+		List<Map<String, String>> slaves = jedisSentinel.sentinelSlaves("mymaster");
+		System.out.println(JSON.toJSONString(slaves));
 
 
 		// 作业：
@@ -60,14 +60,15 @@ public class RedisApplication {
 		//  3) 分配槽位，确认分配成功
 		//  4) 测试简单的get/set是否成功
 		// 然后运行如下代码
-// 		JedisCluster cluster = ClusterJedis.getJedisCluster();
-//		for (int i = 0; i < 100; i++) {
-//			cluster.set("cluster:" + i, "data:" + i);
-//		}
-//		System.out.println(cluster.get("cluster:92"));
-//		ClusterJedis.close();
+ 		JedisCluster cluster = ClusterJedis.getJedisCluster();
+		for (int i = 0; i < 100; i++) {
+			cluster.set("cluster:" + i, "data:" + i);
+		}
+		System.out.println(cluster.get("cluster:92"));
+		ClusterJedis.close();
 
-		//SpringApplication.run(RedisApplication.class, args);
+
+		SpringApplication.run(RedisApplication.class, args);
 
 	}
 
