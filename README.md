@@ -17,7 +17,7 @@ buffer：缓冲区本质上是一个可以读写数据的内存块，可以理�
 
 selector：Selector用于检测注册的channel是否有事件发生，如果检测到有事件发生，就去获取事件并处理发生的事件。
 
-![nio](nio.jpg)
+![nio](https://github.com/Kevin-chen-sheng/JavaCourseCodes/blob/master/nio.jpg)
 
 ## 3.并发编程
 
@@ -29,7 +29,7 @@ selector：Selector用于检测注册的channel是否有事件发生，如果检
 
 Java代码在编译后生成字节码，字节码被类加载器加载到JVM中，JVM执行字节码最终转化为汇编指令在CPU上执行。Java中所使用的并发机制依赖于JVM的实现和CPU的指令。
 
-![并发编程](并发编程.jpg)
+![并发编程](https://github.com/Kevin-chen-sheng/JavaCourseCodes/blob/master/并发编程.jpg)
 
 ## 4.Spring 和 ORM 等框架
 
@@ -39,7 +39,7 @@ spring的loc叫做控制反转，就是通过spring来管理对象的创建，�
 
 spring AOP叫做面向切面编程，是一个编程范式，目的是提高代码的模块性。Spring AOP基于动态代理的方式实现，如果是实现了接口的话就会使用jdk动态代理，反之则会使用CGLIB代理，aop中的应用主要体现在 事务.日志 .异常处理等的方面。通过在代码的前后做一些增强处理，可以实现对业务逻辑的隔离，提高代码的模块化能力，同时也是解耦。spring主要提供了Aspect切面，JoinPoint连接点，PointCut切入点，Advice增强等的实现方式。
 
-![Spring 和 ORM](Spring 和 ORM.jpg)
+![Spring 和 ORM](https://github.com/Kevin-chen-sheng/JavaCourseCodes/blob/master/Spring 和 ORM.jpg)
 
 ## 5.msql数据库和sql
 
@@ -59,7 +59,7 @@ MySQL，一个关系型数据库管理系统，用来持久化保存数据。
 2、read commited（读提交）大多数数据库默认隔离级别，只能读取已经提交的内容。但无法避免重复读和幻读。
 3、repeatable read（可重复读）Mysql默认事务隔离级别。可避免不可重复度和脏读的问题，确保同一个事务的多个实例在并发读取数据时，会看到同样的数据。
 4、serializable（可串行化）事务的最高隔离级别。他它对强行对事务进行排序，使之不会发生冲突，实际上是在每个读的数据行前加个锁，这种级别可能导致大量的超时现象和锁竞争。
-![mysql数据库和sql](mysql数据库和sql.jpg)
+![mysql数据库和sql](https://github.com/Kevin-chen-sheng/JavaCourseCodes/blob/master/mysql数据库和sql.jpg)
 
 ## 6.分库分表
 
@@ -91,7 +91,7 @@ MySQL，一个关系型数据库管理系统，用来持久化保存数据。
 部分业务表无法关联（Join），只能通过接口方式解决，提高了系统的复杂度。
 受每种业务的不同限制，存在单库性能瓶颈，不易进行数据扩展和提升性能。
 事务处理复杂。
-![分库分表](分库分表.jpg)
+![分库分表](https://github.com/Kevin-chen-sheng/JavaCourseCodes/blob/master/分库分表.jpg)
 
 ## 7.RPC和微服务
 
@@ -99,7 +99,7 @@ MySQL，一个关系型数据库管理系统，用来持久化保存数据。
 
 RPC是上层协议，底层可以基于TCP协议，也可以基于HTTP协议。它是基于分布式架构而出现的，现在RPC主要是通过TCP传输协议和高效的序列化反序列完成。高性能的TCP传输手动主要是通过IO的多路复用和零拷贝，最典型的框架就是netty，而IO的多路复用主要手段有select、poll、epoll，其中epoll是liunx主要的io多路复用模型的手段，也是性能最高的。
 
-![RPC和微服务](RPC和微服务.jpg)
+![RPC和微服务](https://github.com/Kevin-chen-sheng/JavaCourseCodes/blob/master/RPC和微服务.jpg)
 
 ## 8.分布式缓存
 
@@ -113,7 +113,7 @@ RPC是上层协议，底层可以基于TCP协议，也可以基于HTTP协议。�
 
 分布式缓存的实现手段，在实际开发中，比较主流的分布式缓存系统主要有Memcached 和 Redis，这两款系统都采用key-value存储方案，却有各自的优缺点。
 
-![分布式缓存](分布式缓存.jpg)
+![分布式缓存](https://github.com/Kevin-chen-sheng/JavaCourseCodes/blob/master/分布式缓存.jpg)
 
 ## 9.分布式消息队列
 
@@ -129,4 +129,4 @@ RPC是上层协议，底层可以基于TCP协议，也可以基于HTTP协议。�
 
 4、消息广播功能，比如发票服务接收到新发票数据，需要通知到不同的业务服务，只要业务服务增加消费者就可以了，不需要修改生产者的功能。
 
-![分布式消息队列](分布式消息队列.jpg)
+![分布式消息队列](https://github.com/Kevin-chen-sheng/JavaCourseCodes/blob/master/分布式消息队列.jpg)
